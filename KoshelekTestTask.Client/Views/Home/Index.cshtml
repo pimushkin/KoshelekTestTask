@@ -3,6 +3,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the test task for koshelek.ru</h1>
 </div>
+<h1>Window for sending messages</h1>
+<div id="inputForm">
+    <input type="text" id="message" />
+    <input type="button" id="sendBtn" value="Отправить" />
+</div>
+
+<script type="module" src="~/js/hubSend.js"></script>
+
+<div id="snackbar">The message has been successfully sent</div>

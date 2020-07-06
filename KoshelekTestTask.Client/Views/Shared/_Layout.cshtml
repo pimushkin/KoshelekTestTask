@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - KoshelekTestTask.Client</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
 </head>
 <body>
     <header>
@@ -22,7 +23,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewRealTime">Chat in real time</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewForPeriod">Message history</a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +41,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - KoshelekTestTask.Client - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Pimushkin Dmitry
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

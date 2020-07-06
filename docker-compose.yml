@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  api:
+    image: koshelek-api
+    container_name: Koshelek-Api
+    environment:
+      - SEQ_SERVER_URL=http://seq:5341
+      - SEQ_API_KEY=
+    ports:
+      - 8080:80
+    build:
+      context: ./KoshelekTestTask.Api
+      dockerfile: Dockerfile
+
+  client:
+    image: koshelek-client
+    container_name: Koshelek-Client
+    ports:
+      - 80:80
+    build:
+      context: ./KoshelekTestTask.Client
+      dockerfile: Dockerfile
+      
+  seq:
+    image: datalust/seq
+    container_name: Koshelek-Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:80

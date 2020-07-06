@@ -23,7 +23,12 @@ namespace KoshelekTestTask.Client.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ViewRealTime()
+        {
+            return View();
+        }
+
+        public IActionResult ViewForPeriod()
         {
             return View();
         }

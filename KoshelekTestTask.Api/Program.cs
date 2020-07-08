@@ -24,7 +24,8 @@ namespace KoshelekTestTask.Api
             {
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Verbose()
-                    .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                    .MinimumLevel.Override("System", LogEventLevel.Error)
                     .Enrich.With(new LogEnricher())
                     .WriteTo.Seq(seqServerUrl, apiKey: seqApiKey)
                     .CreateLogger();

@@ -7,10 +7,11 @@
 </div>
 <h1>Window for sending messages</h1>
 <div id="inputForm">
-    <input type="text" id="message" />
+    <textarea type="text" id="message" maxlength="128" rows="8" cols="32"></textarea>
     <input type="button" id="sendBtn" value="Отправить" />
 </div>
 
 <script type="module" src="~/js/hubSend.js"></script>
 
 <div id="snackbar">The message has been successfully sent</div>
+<div id="faultSnackbar">The message was not sent</div>

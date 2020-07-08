@@ -8,9 +8,5 @@ namespace KoshelekTestTask.Api.Hubs
 {
     public class MessageHub : Hub
     {
-        public async Task Send(string message)
-        {
-            await Clients.All.SendAsync("Send", message);
-        }
     }
 }

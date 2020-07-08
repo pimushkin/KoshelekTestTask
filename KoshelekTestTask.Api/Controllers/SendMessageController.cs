@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using KoshelekTestTask.Api.Data;
+using KoshelekTestTask.Api.Hubs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace KoshelekTestTask.Api.Controllers
 {
@@ -10,36 +14,44 @@ namespace KoshelekTestTask.Api.Controllers
     [ApiController]
     public class SendMessageController : ControllerBase
     {
-        // GET: api/<SendMessageController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IHubContext<MessageHub> _hubContext;
+        public SendMessageController(IHubContext<MessageHub> hubContext)
         {
-            return new string[] { "value1", "value2" };
+            _hubContext = hubContext;
         }
-
-        // GET api/<SendMessageController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<SendMessageController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<Message>> Post(Message message)
         {
-        }
+            if (message == null)
+            {
+                return BadRequest();
+            }
 
-        // PUT api/<SendMessageController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+            if (message.Content.Length > 128)
+            {
+                return BadRequest("The maximum length of a sent message must not exceed 128 characters.");
+            }
 
-        // DELETE api/<SendMessageController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (message.Content.Length == 0)
+            {
+                return BadRequest("The message cannot be empty.");
+            }
+
+            TimeZoneInfo moscowTimeZone;
+            if (Environment.OSVersion.ToString().Contains("Microsoft") || Environment.OSVersion.ToString().Contains("Windows"))
+            {
+                // works on Windows only
+                moscowTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
+            }
+            else
+            {
+                // works on Linux only
+                moscowTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Moscow");
+            }
+            var moscowDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, moscowTimeZone);
+            await _hubContext.Clients.All.SendAsync("Send", message.SerialNumber, message.Content, moscowDateTime.ToString(CultureInfo.InvariantCulture));
+            return Ok(message);
         }
     }
 }

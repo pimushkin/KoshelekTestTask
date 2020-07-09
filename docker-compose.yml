@@ -1,31 +1,51 @@
 version: '3.4'
 
+x-common-variables: &common-variables
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: password
+  POSTGRES_DB: koshelekDB
+
 services:
   api:
-    image: koshelek-api
-    container_name: Koshelek-Api
+    image: koshelektesttask-api
+    container_name: KoshelekTestTask-Api
     environment:
-      - SEQ_SERVER_URL=http://seq:5341
-      - SEQ_API_KEY=
+      <<: *common-variables
+      POSTGRES_HOST: postgres
+      SEQ_SERVER_URL: http://seq:5341
     ports:
       - 8080:80
+    restart: unless-stopped
     build:
       context: ./KoshelekTestTask.Api
       dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - seq
 
   client:
-    image: koshelek-client
-    container_name: Koshelek-Client
+    image: koshelektesttask-client
+    container_name: KoshelekTestTask-Client
     ports:
       - 80:80
+    restart: unless-stopped
     build:
       context: ./KoshelekTestTask.Client
       dockerfile: Dockerfile
       
   seq:
     image: datalust/seq
-    container_name: Koshelek-Seq
+    container_name: KoshelekTestTask-Seq
     environment:
       - ACCEPT_EULA=Y
     ports:
       - 5341:80
+    restart: unless-stopped
+      
+  postgres:
+    image: postgres
+    container_name: KoshelekTestTask-PostgreSQL
+    environment: *common-variables
+    ports:
+      - 5432:5432
+    restart: unless-stopped

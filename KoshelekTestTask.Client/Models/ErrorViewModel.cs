@@ -1,5 +1,3 @@
-using System;
-
 namespace KoshelekTestTask.Client.Models
 {
     public class ErrorViewModel

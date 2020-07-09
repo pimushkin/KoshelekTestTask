@@ -1,6 +1,12 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Message history";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Message history for the last 10 minutes</h1>
+
+<div>
+    <input type="button" id="updateBtn" value="Обновить"/>
+    <div id="chatroom"></div>
+</div>
+
+<script type="module" src="~/js/apiForPeriod.js"></script>

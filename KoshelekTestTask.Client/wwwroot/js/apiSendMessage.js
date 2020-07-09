@@ -1,9 +1,9 @@
 ﻿import * as snackbar from './showSnackBar.js';
 var i = 1;
-async function createUser() {
+async function sendMessage() {
     try {
         let message = document.getElementById("message").value;
-        const response = await window.fetch("http://localhost:8080/api/sendmessage", {
+        const response = await window.fetch("http://localhost:8080/api/message", {
             method: "POST",
             headers: { "Accept": "application/json", "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -22,5 +22,5 @@ async function createUser() {
     }
 }
 document.getElementById("sendBtn").addEventListener("click", function (e) {
-    createUser();
+    sendMessage();
 });

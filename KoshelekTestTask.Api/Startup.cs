@@ -75,9 +75,6 @@ namespace KoshelekTestTask.Api
                 endpoints.MapControllers();
                 endpoints.MapHub<MessageHub>("/chat");
             });
-            app.UseSwagger();
-
-            app.UseSwaggerUI();
         }
     }
 }

@@ -3,7 +3,7 @@ var i = 1;
 async function sendMessage() {
     try {
         let message = document.getElementById("message").value;
-        const response = await window.fetch("http://localhost:8080/api/message", {
+        const response = await window.fetch("http://localhost:8080/api/MessageHandler", {
             method: "POST",
             headers: { "Accept": "application/json", "Content-Type": "application/json" },
             body: JSON.stringify({

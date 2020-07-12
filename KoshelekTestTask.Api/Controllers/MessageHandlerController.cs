@@ -60,20 +60,10 @@ namespace KoshelekTestTask.Api.Controllers
             return Ok(message);
         }
 
-        // GET api/<MessageHandlerController>
-        [HttpGet]
-        public async Task<ActionResult<List<Message>>> Get()
+        // POST api/<MessageHandlerController>/FindOverPeriodOfTime
+        [HttpPost("FindOverPeriodOfTime")]
+        public async Task<ActionResult<List<Message>>> PostFindMessages(Interval interval)
         {
-            TimeZoneInfo moscowTimeZone;
-            if (Environment.OSVersion.ToString().Contains("Microsoft") ||
-                Environment.OSVersion.ToString().Contains("Windows"))
-                // works on Windows only
-                moscowTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time");
-            else
-                // works on Linux only
-                moscowTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Europe/Moscow");
-            var moscowDateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, moscowTimeZone);
-
             await using var con = new NpgsqlConnection(Program.ConnectionString);
             con.Open();
             await using var cmd = new NpgsqlCommand
@@ -81,7 +71,7 @@ namespace KoshelekTestTask.Api.Controllers
                 Connection = con,
                 CommandText =
                     "SELECT serial_number, content, moscow_date_time FROM koshelek " +
-                    $"WHERE moscow_date_time > '{moscowDateTime.ToUniversalTime():O}'::timestamp - INTERVAL '10 minute';"
+                    $"WHERE moscow_date_time BETWEEN '{interval.Beginning.ToUniversalTime():O}'::timestamp AND '{interval.End.ToUniversalTime():O}'::timestamp;"
             };
             await using var rdr = await cmd.ExecuteReaderAsync();
             var messages = new List<Message>();

@@ -1,7 +1,16 @@
 ﻿async function GetMessagesForPeriod() {
-    const response = await window.fetch("http://localhost:8080/api/message", {
-        method: "GET",
-        headers: { "Accept": "application/json" }
+    var currentTime = new Date();
+    currentTime.setHours(currentTime.getHours() + 4);
+    var moscowDateIsoEnd = (new Date(currentTime.toLocaleString('en-US', { timeZone: 'Europe/Moscow' }))).toISOString();
+    currentTime.setMinutes(currentTime.getMinutes() - 10);
+    var moscowDateIsoBeginning = (new Date(currentTime.toLocaleString('en-US', { timeZone: 'Europe/Moscow' }))).toISOString();
+    const response = await window.fetch("http://localhost:8080/api/MessageHandler/FindOverPeriodOfTime", {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+            beginning: moscowDateIsoBeginning,
+            end: moscowDateIsoEnd
+        })
     });
     if (response.ok === true) {
         const message = await response.json();

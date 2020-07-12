@@ -4,9 +4,12 @@
 
 <h1>Message history for the last 10 minutes</h1>
 
-<div>
-    <input type="button" id="updateBtn" value="Обновить"/>
-    <div id="chatroom"></div>
-</div>
+<form>
+    <input type="button" id="updateBtn" class="btn btn-primary" value="Update" />
+    <div class="form-group">
+        <label>Message list:</label>
+        <div id="chatroom"></div>
+    </div>
+</form>
 
-<script type="module" src="~/js/apiForPeriod.js"></script>
+<script src="~/js/apiForPeriod.js"></script>

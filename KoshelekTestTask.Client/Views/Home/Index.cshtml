@@ -6,10 +6,14 @@
     <h1 class="display-4">Welcome to the test task for koshelek.ru</h1>
 </div>
 <h1>Window for sending messages</h1>
-<div id="inputForm">
-    <textarea type="text" id="message" maxlength="128" rows="8" cols="32"></textarea>
-    <input type="button" id="sendBtn" value="Отправить" />
-</div>
+<form>
+    <div class="form-group">
+        <label>Message text</label>
+        <input class="form-control" id="message" maxlength="128">
+        <small class="form-text text-muted">The maximum length of a sent message must not exceed 128 characters.</small>
+    </div>
+    <input type="button" id="sendBtn" class="btn btn-primary" value="Отправить" />
+</form>
 
 <script type="module" src="~/js/apiSendMessage.js"></script>
 

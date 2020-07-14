@@ -1,22 +1,18 @@
 using System;
 using System.IO;
-using KoshelekTestTask.Api.Loggers;
+using KoshelekTestTask.Core.Interfaces;
+using KoshelekTestTask.Infrastructure.Loggers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
 using Serilog;
 using Serilog.Events;
+using KoshelekTestTask.Infrastructure.Data;
 
 namespace KoshelekTestTask.Api
 {
     public class Program
     {
-        public static readonly string ConnectionString =
-            $"Host={Environment.GetEnvironmentVariable("POSTGRES_HOST")};" +
-            $"Username={Environment.GetEnvironmentVariable("POSTGRES_USER")};" +
-            $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")};" +
-            $"Database={Environment.GetEnvironmentVariable("POSTGRES_DB")}";
-
         public static void Main(string[] args)
         {
             var seqServerUrl = Environment.GetEnvironmentVariable("SEQ_SERVER_URL");
@@ -48,21 +44,9 @@ namespace KoshelekTestTask.Api
 
             try
             {
-                using var con = new NpgsqlConnection(ConnectionString);
-                con.Open();
-
-                using var cmd = new NpgsqlCommand();
-                cmd.Connection = con;
-
-                cmd.CommandText = "CREATE TABLE IF NOT EXISTS koshelek (\r\n" +
-                                  "id serial NOT NULL,\r\n" +
-                                  "serial_number int NOT NULL,\r\n" +
-                                  "content varchar(128) NOT NULL,\r\n" +
-                                  "moscow_date_time timestamp without time zone NOT NULL,\r\n" +
-                                  "CONSTRAINT koshelek_pk PRIMARY KEY (id)\r\n" +
-                                  ")";
-                cmd.ExecuteNonQuery();
-
+                
+                IPostgreSqlCommand postgreSqlCommand = new PostgreSqlCommand();
+                postgreSqlCommand.CreateTable();
                 Log.Information("Starting up Koshelek Api");
                 CreateHostBuilder(args).Build().Run();
             }

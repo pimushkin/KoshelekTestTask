@@ -2,9 +2,12 @@
 using Serilog.Core;
 using Serilog.Events;
 
-namespace KoshelekTestTask.Api.Loggers
+namespace KoshelekTestTask.Infrastructure.Loggers
 {
-    internal class LogEnricher : ILogEventEnricher
+    /// <summary>
+    ///     Class that is used to configure LogEvent enrichment.
+    /// </summary>
+    public class LogEnricher : ILogEventEnricher
     {
         public void Enrich(LogEvent le, ILogEventPropertyFactory lepf)
         {

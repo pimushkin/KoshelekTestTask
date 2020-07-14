@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoshelekTestTask.Client", "KoshelekTestTask.Client\KoshelekTestTask.Client.csproj", "{BD3B9561-5F57-47EC-BA18-0C2573F9A600}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoshelekTestTask.Client", "KoshelekTestTask.Client\KoshelekTestTask.Client.csproj", "{BD3B9561-5F57-47EC-BA18-0C2573F9A600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoshelekTestTask.Api", "KoshelekTestTask.Api\KoshelekTestTask.Api.csproj", "{01795E4A-398F-4B1C-8DC3-9E4E572C4E07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KoshelekTestTask.Api", "KoshelekTestTask.Api\KoshelekTestTask.Api.csproj", "{01795E4A-398F-4B1C-8DC3-9E4E572C4E07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoshelekTestTask.Core", "KoshelekTestTask.Core\KoshelekTestTask.Core.csproj", "{4AE08F7E-9280-49EE-A761-B946856D1E5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoshelekTestTask.Infrastructure", "KoshelekTestTask.Infrastructure\KoshelekTestTask.Infrastructure.csproj", "{563DE231-B2AD-4775-9478-FEE9B28F9D1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{01795E4A-398F-4B1C-8DC3-9E4E572C4E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01795E4A-398F-4B1C-8DC3-9E4E572C4E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01795E4A-398F-4B1C-8DC3-9E4E572C4E07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE08F7E-9280-49EE-A761-B946856D1E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE08F7E-9280-49EE-A761-B946856D1E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE08F7E-9280-49EE-A761-B946856D1E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE08F7E-9280-49EE-A761-B946856D1E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563DE231-B2AD-4775-9478-FEE9B28F9D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563DE231-B2AD-4775-9478-FEE9B28F9D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563DE231-B2AD-4775-9478-FEE9B28F9D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563DE231-B2AD-4775-9478-FEE9B28F9D1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

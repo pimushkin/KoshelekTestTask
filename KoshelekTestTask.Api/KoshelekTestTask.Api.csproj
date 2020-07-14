@@ -11,5 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KoshelekTestTask.Infrastructure\KoshelekTestTask.Infrastructure.csproj" />
+  </ItemGroup>
+
 
 </Project>

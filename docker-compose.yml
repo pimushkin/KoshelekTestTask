@@ -17,8 +17,8 @@ services:
       - 8080:80
     restart: unless-stopped
     build:
-      context: ./KoshelekTestTask.Api
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./api.dockerfile
     depends_on:
       - postgres
       - seq
@@ -30,8 +30,8 @@ services:
       - 80:80
     restart: unless-stopped
     build:
-      context: ./KoshelekTestTask.Client
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./client.dockerfile
       
   seq:
     image: datalust/seq

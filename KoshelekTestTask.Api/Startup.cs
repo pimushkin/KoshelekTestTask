@@ -1,5 +1,6 @@
 using System;
-using KoshelekTestTask.Api.Hubs;
+using System.IO;
+using KoshelekTestTask.Infrastructure.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,9 +32,9 @@ namespace KoshelekTestTask.Api
                     .SetIsOriginAllowed(host => true));
             });
             services.AddSignalR();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1",
+                options.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
                         Title = "KoshelekTestTask API",

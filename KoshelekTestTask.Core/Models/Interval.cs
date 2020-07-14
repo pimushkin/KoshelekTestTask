@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace KoshelekTestTask.Api.Data
+namespace KoshelekTestTask.Core.Models
 {
     public class Interval
     {

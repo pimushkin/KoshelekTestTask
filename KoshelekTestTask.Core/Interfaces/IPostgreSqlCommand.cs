@@ -11,10 +11,6 @@ namespace KoshelekTestTask.Core.Interfaces
     public interface IPostgreSqlCommand
     {
         /// <summary>
-        ///     Creates a table in the database that is necessary for storing messages.
-        /// </summary>
-        void CreateTable();
-        /// <summary>
         ///     Send a message asynchronously to the database.
         /// </summary>
         /// <param name="message">The message that will be sent to the server.</param>

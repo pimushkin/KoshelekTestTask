@@ -43,9 +43,12 @@ services:
     restart: unless-stopped
       
   postgres:
-    image: postgres
+    image: koshelektesttask-postgres
     container_name: KoshelekTestTask-PostgreSQL
     environment: *common-variables
     ports:
       - 5432:5432
+    build:
+      context: .
+      dockerfile: ./postgres.dockerfile
     restart: unless-stopped

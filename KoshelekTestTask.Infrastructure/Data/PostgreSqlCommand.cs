@@ -16,26 +16,6 @@ namespace KoshelekTestTask.Infrastructure.Data
             $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")};" +
             $"Database={Environment.GetEnvironmentVariable("POSTGRES_DB")}";
 
-        public void CreateTable()
-        {
-            using var connection = new NpgsqlConnection(ConnectionString);
-            connection.Open();
-
-            using var command = new NpgsqlCommand
-            {
-                Connection = connection,
-                CommandText = "CREATE TABLE IF NOT EXISTS koshelek (\r\n" +
-                              "id serial NOT NULL,\r\n" +
-                              "serial_number int NOT NULL,\r\n" +
-                              "text varchar(128) NOT NULL,\r\n" +
-                              "time_of_sending timestamp without time zone NOT NULL,\r\n" +
-                              "CONSTRAINT koshelek_pk PRIMARY KEY (id)\r\n" +
-                              ")"
-            };
-
-            command.ExecuteNonQuery();
-        }
-
         public async Task SendMessageAsync(Message message)
         {
             await using var connection = new NpgsqlConnection(ConnectionString);

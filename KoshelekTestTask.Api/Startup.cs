@@ -26,10 +26,10 @@ namespace KoshelekTestTask.Api
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
+                    .WithOrigins("http://localhost")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials()
-                    .SetIsOriginAllowed(host => true));
+                    .AllowCredentials());
             });
             services.AddSignalR();
             services.AddSwaggerGen(options =>

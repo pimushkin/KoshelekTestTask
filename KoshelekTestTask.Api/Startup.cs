@@ -1,5 +1,9 @@
 using System;
 using System.IO;
+using KoshelekTestTask.Core.Interfaces;
+using KoshelekTestTask.Infrastructure;
+using KoshelekTestTask.Infrastructure.Data;
+using KoshelekTestTask.Infrastructure.Handlers;
 using KoshelekTestTask.Infrastructure.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +60,10 @@ namespace KoshelekTestTask.Api
                 var xmlPath = Path.Combine(basePath, "KoshelekTestTask.Api.xml");
                 options.IncludeXmlComments(xmlPath);
             });
+            services.AddTransient<IMessageDispatcher, MessageDispatcher>();
+            services.AddTransient<IMessageHandler, MessageHandler>();
+            services.AddTransient<IMessageService, MessageService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

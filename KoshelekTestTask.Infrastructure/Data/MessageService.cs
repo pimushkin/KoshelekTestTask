@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace KoshelekTestTask.Infrastructure.Data
 {
-    public class PostgreSqlCommand : IPostgreSqlCommand
+    public class MessageService : IMessageService
     {
         private static readonly string ConnectionString =
             $"Host={Environment.GetEnvironmentVariable("POSTGRES_HOST")};" +

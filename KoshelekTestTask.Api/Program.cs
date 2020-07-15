@@ -45,8 +45,6 @@ namespace KoshelekTestTask.Api
 
             try
             {
-                
-                IPostgreSqlCommand postgreSqlCommand = new PostgreSqlCommand();
                 Log.Information("Starting up Koshelek Api");
                 CreateHostBuilder(args).Build().Run();
             }

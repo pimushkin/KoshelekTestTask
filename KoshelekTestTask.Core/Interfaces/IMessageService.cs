@@ -6,9 +6,9 @@ using KoshelekTestTask.Core.Models;
 namespace KoshelekTestTask.Core.Interfaces
 {
     /// <summary>
-    ///     Contains SQL commands required for working with PostgreSQL.
+    ///     Contains SQL commands required for working with database.
     /// </summary>
-    public interface IPostgreSqlCommand
+    public interface IMessageService
     {
         /// <summary>
         ///     Send a message asynchronously to the database.

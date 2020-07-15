@@ -6,7 +6,7 @@ namespace KoshelekTestTask.Infrastructure.Handlers
 {
     public class MessageHandler : IMessageHandler
     {
-        public bool CheckValidityOfMessage(Message message, out string error)
+        public bool CheckMessage(Message message, out string error)
         {
             if (message == null)
             {

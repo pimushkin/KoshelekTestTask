@@ -22,14 +22,22 @@ namespace KoshelekTestTask.Api.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
-        private readonly IHubContext<MessageHub> _hubContext;
+        private readonly IMessageDispatcher _messageDispatcher;
+        private readonly IMessageHandler _messageHandler;
+        private readonly IMessageService _messageService;
+
         /// <summary>
         ///     MessageController constructor.
         /// </summary>
         /// <param name="hubContext">Hub used for real-time messaging with clients.</param>
-        public MessageController(IHubContext<MessageHub> hubContext)
+        /// <param name="messageDispatcher">Contains methods that use SignalR to communicate with clients in real time.</param>
+        /// <param name="messageHandler">Contains methods used for checking and configuring the message.</param>
+        /// <param name="messageService">Contains SQL commands required for working with database.</param>
+        public MessageController(IMessageDispatcher messageDispatcher, IMessageHandler messageHandler, IMessageService messageService)
         {
-            _hubContext = hubContext;
+            _messageDispatcher = messageDispatcher;
+            _messageHandler = messageHandler;
+            _messageService = messageService;
         }
 
         // POST api/<MessageController>/Send
@@ -55,20 +63,17 @@ namespace KoshelekTestTask.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Message>> SendMessage(MessageToPost messageToPost)
         {
-            IMessageHandler messageHandler = new MessageHandler();
-            var moscowDateTime = messageHandler.GetCurrentMoscowTime();
+            var moscowDateTime = _messageHandler.GetCurrentMoscowTime();
             var message = new Message { Text = messageToPost.Text, SerialNumber = messageToPost.SerialNumber, TimeOfSending = moscowDateTime };
-            var valid = messageHandler.CheckValidityOfMessage(message, out var error);
+            var valid = _messageHandler.CheckMessage(message, out var error);
             if (!valid)
             {
                 return BadRequest(error);
             }
 
-            IPostgreSqlCommand postgreSqlCommand = new PostgreSqlCommand();
-            await postgreSqlCommand.SendMessageAsync(message);
+            await _messageService.SendMessageAsync(message);
 
-            IMessageDispatcher messageDispatcher = new MessageDispatcher(_hubContext);
-            await messageDispatcher.SendMessageToAllUsers(message);
+            await _messageDispatcher.SendMessageToAllUsers(message);
 
             return Ok(message);
         }
@@ -89,8 +94,7 @@ namespace KoshelekTestTask.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<Message>>> GetMessages(Interval interval)
         {
-            IPostgreSqlCommand postgreSqlCommand = new PostgreSqlCommand();
-            var messages = await postgreSqlCommand.FindMessagesOverPeriodOfTimeAsync(interval);
+            var messages = await _messageService.FindMessagesOverPeriodOfTimeAsync(interval);
 
             return Ok(messages);
         }

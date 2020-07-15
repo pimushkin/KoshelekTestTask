@@ -1,6 +1,8 @@
-﻿import { hubConnection } from './hubConnection.js';
+﻿const hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl("http://localhost:8080/chat")
+    .build();
 
-hubConnection.on("Send", function (serialNumber, text, timeOfSending) {
+hubConnection.on("ReceiveMessage", function (serialNumber, text, timeOfSending) {
     let options = {
         year: 'numeric', month: 'numeric', day: 'numeric',
         hour: 'numeric', minute: 'numeric', second: 'numeric',

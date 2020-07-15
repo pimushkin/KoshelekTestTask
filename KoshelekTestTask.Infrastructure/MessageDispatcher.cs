@@ -17,7 +17,7 @@ namespace KoshelekTestTask.Infrastructure
 
         public async Task SendMessageToAllUsers(Message message)
         {
-            await _hubContext.Clients.All.SendAsync("Send", message.SerialNumber, message.Text,
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", message.SerialNumber, message.Text,
                 message.TimeOfSending);
         }
     }

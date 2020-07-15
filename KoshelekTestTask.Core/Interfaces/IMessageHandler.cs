@@ -14,7 +14,7 @@ namespace KoshelekTestTask.Core.Interfaces
         /// <param name="message">The message that will be checked.</param>
         /// <param name="error">Error message.</param>
         /// <returns></returns>
-        bool CheckValidityOfMessage(Message message, out string error);
+        bool CheckMessage(Message message, out string error);
         /// <summary>
         ///     Allows you to determine the current Moscow time.
         /// </summary>

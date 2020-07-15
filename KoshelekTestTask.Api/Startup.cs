@@ -52,6 +52,9 @@ namespace KoshelekTestTask.Api
                         }
                     }
                 );
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "KoshelekTestTask.Api.xml");
+                options.IncludeXmlComments(xmlPath);
             });
         }
 

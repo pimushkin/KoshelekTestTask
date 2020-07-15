@@ -30,7 +30,8 @@ namespace KoshelekTestTask.Api
             }
             else
             {
-                var logsPath = @$"{Environment.CurrentDirectory}/logs";
+                var basePath = AppContext.BaseDirectory;
+                var logsPath = Path.Combine(basePath, "logs");
                 if (!Directory.Exists(logsPath)) Directory.CreateDirectory(logsPath);
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Verbose()

@@ -9,8 +9,7 @@
 ## General info
 This web application is a solution to the test task for the Junior C# Developer job. The client can send messages, view messages in real time using the web socket, 
 and view messages sent by users in the last 10 minutes. The client performs these actions using the REST API and a web socket that is open on the API server side. 
-The PostgreSQL server is used for storing messages sent by the client. The  application is used for convenient storage and search of 
-structural logs.
+The PostgreSQL server is used for storing messages sent by the client.
 
 ## API Documentation
 The API server has a web page with documentation that is automatically generated using the Swagger framework for the RESTful API specification. This web page is 

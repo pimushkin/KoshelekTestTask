@@ -1,13 +1,10 @@
 using System;
 using System.IO;
-using KoshelekTestTask.Core.Interfaces;
 using KoshelekTestTask.Infrastructure.Loggers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Npgsql;
 using Serilog;
 using Serilog.Events;
-using KoshelekTestTask.Infrastructure.Data;
 
 namespace KoshelekTestTask.Api
 {

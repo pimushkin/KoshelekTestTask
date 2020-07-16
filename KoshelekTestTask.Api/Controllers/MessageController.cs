@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using KoshelekTestTask.Infrastructure.Hubs;
 using KoshelekTestTask.Core.Entities;
 using KoshelekTestTask.Core.Interfaces;
 using KoshelekTestTask.Core.Models;
-using KoshelekTestTask.Infrastructure;
-using KoshelekTestTask.Infrastructure.Data;
-using KoshelekTestTask.Infrastructure.Handlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using Npgsql;
 
 namespace KoshelekTestTask.Api.Controllers
 {
@@ -29,7 +22,6 @@ namespace KoshelekTestTask.Api.Controllers
         /// <summary>
         ///     MessageController constructor.
         /// </summary>
-        /// <param name="hubContext">Hub used for real-time messaging with clients.</param>
         /// <param name="messageDispatcher">Contains methods that use SignalR to communicate with clients in real time.</param>
         /// <param name="messageHandler">Contains methods used for checking and configuring the message.</param>
         /// <param name="messageService">Contains SQL commands required for working with database.</param>
